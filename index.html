@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabs com api</title>
+</head>
+<body>
+    <div class ="tabs">
+        <button class="tab-btn avtive" onclik="abrirTab(0)">IMC </button>
+        <button class="tab-btn" onclik="abrirTab(1)">MEDIA </button>
+    </div>
+    <div class="tab-contei active">
+        <h2>calcular IMC</h2>
+        <input type="text" id="nome" placeholder=" Digite seu Nome">
+        <input type="number" id="idade" placeholder="Digite seu Idade">
+        <input type="number" id="altura" placeholder="Digite seu Altura">
+        <input type="number" id="peso" placeholder="Digite seu Peso">
+        </but>ton onclick="calcularImc()">calcular IMC</button>
+        <div class="resultado" id="rresultadoImc"> </div>
+    </div>
+    <script>
+        function abrirTab(index){
+            document.querySelectorALL('. tab - content').forEach(tab=> tab.classList,remove('active'));
+            document.querySelectorALL('. tab - btn').forEach(btn=> btn.classList,remove('active'));
+
+
+            document.querySelectorALL(' tad-content')[index].classList.add('active');  
+            document.querySelectorALL(' tad-btn')[index].classList.add('active'); 
+        }
+        async function calcularImc(){
+            const dados ={
+                nome :docment.getElementByID("nome").value,
+                idade :docment.getElementByID("idade").value,
+                altura :docment.getElementByID("altura").value,
+                peso :docment.getElementByID("peso").value
+            }
+            try {
+                const response = await  fetch("http://localhost:3000/imc", {
+            method: "POST", 
+            headers: {
+                "content-type": "appçication/json"
+            },
+            body: JSON.stringify(dados) 
+                });
+                const resultado = await response.json();
+                document .qetElrmentById("resultadoImc").innderHTML = formatarResposta(ressultado);
+            } catch (error) {
+                
+            }
+                }
+    </script>
+ </body>
+</html>
