@@ -15,7 +15,7 @@
         <input type="number" id="idade" placeholder="Digite seu Idade">
         <input type="number" id="altura" placeholder="Digite seu Altura">
         <input type="number" id="peso" placeholder="Digite seu Peso">
-        </but>ton onclick="calcularImc()">calcular IMC</button>
+        </button onclick="calcularImc()">calcular IMC</button>
         <div class="resultado" id="rresultadoImc"> </div>
     </div>
     <script>
@@ -45,7 +45,9 @@
                 const resultado = await response.json();
                 document .qetElrmentById("resultadoImc").innderHTML = formatarResposta(ressultado);
             } catch (error) {
-                
+                documet.getElementById("resultadoImc"). innerHTML = formatarResposta({
+                    erro: " Ocoreu um erro inesperado. por favor tente novamente mais tarde. "
+                })
             }
                 }
     </script>
