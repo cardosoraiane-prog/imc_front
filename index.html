@@ -36,7 +36,7 @@
             display: block;
         }
         input{
-            width: 100px;
+            width: 100%;
             padding: 10px;
             margin: 8px 0;
             box-sizing: border-box;
@@ -61,34 +61,56 @@
     </style>
 </head>
 <body>
-    <div class ="tabs">
-        <button class="tab-btn avtive" onclik="abrirTab(0)">IMC </button>
+    <div class="tabs">
+        <button class="tab-btn active" onclik="abrirTab(0)">IMC </button>
         <button class="tab-btn" onclik="abrirTab(1)">MEDIA </button>
     </div>
-    <div class="tab-contei active">
+    <div class="tab-content active">
         <h2>calcular IMC</h2>
         <input type="text" id="nome" placeholder=" Digite seu Nome">
         <input type="number" id="idade" placeholder="Digite seu Idade">
         <input type="number" id="altura" placeholder="Digite seu Altura">
         <input type="number" id="peso" placeholder="Digite seu Peso">
-        </button onclick="calcularImc()">calcular IMC</button>
-        <div class="resultado" id="rresultadoImc"> </div>
+        <button onclick="calcularImc()">calcular IMC</button>
+        <div class="resultado" id="resultadoImc"> </div>
     </div>
     <script>
         function abrirTab(index){
-            document.querySelectorALL('. tab - content').forEach(tab=> tab.classList,remove('active'));
-            document.querySelectorALL('. tab - btn').forEach(btn=> btn.classList,remove('active'));
+            document.querySelectorALL('.tab-content').forEach(tab=> tab.classList,remove('active'));
+            document.querySelectorALL('.tab-btn').forEach(btn=> btn.classList,remove('active'));
 
 
-            document.querySelectorALL(' tad-content')[index].classList.add('active');  
-            document.querySelectorALL(' tad-btn')[index].classList.add('active'); 
+            document.querySelectorALL('.tab-content')[index].classList.add('active');  
+            document.querySelectorALL('.tab-btn')[index].classList.add('active'); 
         }
+        function formatarResposta(resultado){
+            if(resultado.erro){
+                return `<div style="color:#721c24;padding:15px;background:#f8d7da;border:1px solid #f5c6cb;border-radius:5px;font-weight:bold">
+                    erro:${resultado.erro}</div>`;
+            }
+            let html=`<div style="padding:15px;background:#d4eda;color:#155724;border:1px solid #c3e6cb;border-radius:5px;"`;
+                html+=`<h3 style="margin-top=0;margin-bottom:15px; border-bottom:1px solid #c3e6cb;padding-bottom:5px;">sucesso</h3>`
+                html+=`<ul style="list-style-type: none;padding-left:0;margin:0;"`;
+
+                for(const[key,value]of Object.entries(resultado)){
+                    let label=key.charAt(0).toLocaleUpperCase()+key.slice(1)
+                    if(key.toLocaleLowerCase()==="imc"){
+                        label="IMC";
+                    }
+                    html+=`<li style="margin-bottom:8px;font-size:16px;">
+                        <strong style="color:#0b2e13">${label}</strong> ${value}
+                        </li>`
+                }
+                html+=`</ul>
+                </div>`;
+                return html;
+        }     
         async function calcularImc(){
             const dados ={
-                nome :docment.getElementByID("nome").value,
-                idade :docment.getElementByID("idade").value,
-                altura :docment.getElementByID("altura").value,
-                peso :docment.getElementByID("peso").value
+                nome :document.getElementByID("nome").value,
+                idade :document.getElementByID("idade").value,
+                altura :document.getElementByID("altura").value,
+                peso :document.getElementByID("peso").value
             }
             try {
                 const response = await  fetch("http://localhost:3000/imc", {
