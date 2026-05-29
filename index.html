@@ -134,6 +134,31 @@
             });
     }
 }
+async function calcularMedia() {
+            const dados = {
+                nota1: document.getElementById("nota1").value,
+                nota2: document.getElementById("nota2").value
+            };
+
+            try {
+                const res = await fetch("http://localhost:3000/media", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                const resultado = await res.json();
+                document.getElementById("resultadoMedia").innerHTML = formatarResposta(resultado);
+            } catch (erro) {
+                document.getElementById("resultadoMedia").innerHTML = formatarResposta({ erro: "Falha na comunicação com o servidor." });
+            }
+        }
     </script>
- </body>
+
+</body>
+
 </html>
+    </script>
+ 
