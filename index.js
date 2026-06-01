@@ -80,8 +80,8 @@ async function calcularMedia() {
 }
 async function login() {
     const dados = {
-        nota1: document.getElementById("email").value,
-        nota2: document.getElementById("senha").value
+        email: document.getElementById("email").value,
+        senha: document.getElementById("senha").value
     };
 
     try {
@@ -96,6 +96,7 @@ async function login() {
         const resultado = await res.json();
         if(resultado.token){
             localStorage.setItem("token",resultado.token)
+            window.location.href='index,html'
         }else{
             alert(resultado.erro)
         }
@@ -103,6 +104,6 @@ async function login() {
         
         
     } catch (erro) {
-        document.getElementById("resultadoLogin").innerHTML = formatarResposta({ erro: "Falha na comunicação com o servidor." });
+        alert(resultado.erro)
     }
 }
