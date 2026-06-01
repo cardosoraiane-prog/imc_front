@@ -96,7 +96,7 @@ async function login() {
         const resultado = await res.json();
         if(resultado.token){
             localStorage.setItem("token",resultado.token)
-            window.location.href='index,html'
+            window.location.href='index,html';
         }else{
             alert(resultado.erro)
         }
