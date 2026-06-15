@@ -121,6 +121,8 @@ function logout() {
   localStorage.removeItem("token");
   window.location.href = "login.html";
 }
+
+
 async function buscarEndereco(){
   const cep = document.getElementById("cep").value
 
@@ -134,7 +136,11 @@ async function buscarEndereco(){
   .then(data =>{
     // alert(data)
     document.getElementById('rua').value= data.logradouro
-    document.getElementById('cidade').value= data.
+    document.getElementById('cidade').value= data.localidae
+    document.getElementById('estado').value= data.estado
+    document.getElementById('numero').focus()
+    document.getElementById('nome').value= data.nome
+    document.getElementById('cpf').value= data.cpf
     console.log(data);
   })
   .catch(error=> {
