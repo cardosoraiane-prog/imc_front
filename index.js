@@ -68,7 +68,7 @@ async function calcularImc() {
 async function calcularMedia() {
   const dados = {
     nota1: document.getElementById("nota1").value,
-    nota2: document.getElementById("nota2").value,
+    nota2: document.getElementById("nota2").values
   };
 
   try {
