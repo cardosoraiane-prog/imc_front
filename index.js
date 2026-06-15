@@ -134,6 +134,7 @@ async function buscarEndereco(){
   .then(data =>{
     // alert(data)
     document.getElementById('rua').value= data.logradouro
+    document.getElementById('cidade').value= data.
     console.log(data);
   })
   .catch(error=> {
