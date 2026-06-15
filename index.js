@@ -121,3 +121,22 @@ function logout() {
   localStorage.removeItem("token");
   window.location.href = "login.html";
 }
+async function buscarEndereco(){
+  const cep = document.getElementById("cep").value
+
+  fetch(`https://viacep.com.br/ws/${cep}/json`)
+  .then(response =>{
+    if (!response.ok){
+      throw new Error (`Error na requisição:`+response.status);
+    }
+    return response.json();
+  })
+  .then(data =>{
+    // alert(data)
+    document.getElementById('rua').value= data.logradouro
+    console.log(data);
+  })
+  .catch(error=> {
+        console.error('Erro:', error);
+  });
+}
