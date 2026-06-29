@@ -50,7 +50,7 @@ async function calcularImc() {
     const response = await fetch("http://localhost:3000/imc", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+           "Content-Type": "application/json",
       },
       body: JSON.stringify(dados),
     });
@@ -70,7 +70,37 @@ async function calcularMedia() {
     nota1: document.getElementById("nota1").value,
     nota2: document.getElementById("nota2").values
   };
-
+  
+  async function cadastraCliente() {
+    const dados = {
+      nome: document.getElementById("nome").value,
+      cpf: document.getElementById("cpf").value,
+      cep: document.getElementById("cpe").value,
+      rua: document.getElementById("rua").value,
+      cidade: document.getElementById("cidade").value,
+      estado: document.getElementById("estado").value,
+      numero: document.getElementById("numero").value,
+    };
+  
+    try {
+      const response = await fetch("http://localhost:3000/cadastraCliente", {
+        method: "POST",
+        headers: {
+             "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dados),
+      });
+  
+      const resultado = await response.json();
+  
+      document.getElementById("resultadoCadastraCliente").innerHTML =
+        formatarResposta(resultado);
+    } catch (error) {
+      document.getElementById("resultadoCadastraCliente").innerHTML = formatarResposta({
+        erro: "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+      });
+    }
+  }
   try {
     const res = await fetch("http://localhost:3000/media", {
       method: "POST",
@@ -147,3 +177,5 @@ async function buscarEndereco(){
         console.error('Erro:', error);
   });
 }
+
+   
