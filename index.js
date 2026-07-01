@@ -70,8 +70,8 @@ async function calcularMedia() {
     nota1: document.getElementById("nota1").value,
     nota2: document.getElementById("nota2").values
   };
-  
-  async function cadastraCliente() {
+
+  async function cadastraClientes() {
     const dados = {
       nome: document.getElementById("nome").value,
       cpf: document.getElementById("cpf").value,
@@ -83,7 +83,7 @@ async function calcularMedia() {
     };
   
     try {
-      const response = await fetch("http://localhost:3000/cadastraCliente", {
+      const response = await fetch("http://localhost:3000/cadastraClientes", {
         method: "POST",
         headers: {
              "Content-Type": "application/json",
@@ -92,12 +92,12 @@ async function calcularMedia() {
       });
   
       const resultado = await response.json();
-  
-      document.getElementById("resultadoCadastraCliente").innerHTML =
+
+      document.getElementById("resultadoCadastraClientes").innerHTML =
         formatarResposta(resultado);
     } catch (error) {
-      document.getElementById("resultadoCadastraCliente").innerHTML = formatarResposta({
-        erro: "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+      document.getElementById("resultadoCadastraClientes").innerHTML = formatarResposta({
+        erro: "falta informasoi dos dados apresentados ",
       });
     }
   }
@@ -152,30 +152,34 @@ function logout() {
   window.location.href = "login.html";
 }
 
-
-async function buscarEndereco(){
-  const cep = document.getElementById("cep").value
+async function buscarEndereco() {
+  const cep = document.getElementById("cep").value;
 
   fetch(`https://viacep.com.br/ws/${cep}/json`)
-  .then(response =>{
-    if (!response.ok){
-      throw new Error (`Error na requisição:`+response.status);
-    }
-    return response.json();
-  })
-  .then(data =>{
-    // alert(data)
-    document.getElementById('rua').value= data.logradouro
-    document.getElementById('cidade').value= data.localidae
-    document.getElementById('estado').value= data.estado
-    document.getElementById('numero').focus()
-    document.getElementById('nome').value= data.nome
-    document.getElementById('cpf').value= data.cpf
-    console.log(data);
-  })
-  .catch(error=> {
-        console.error('Erro:', error);
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro na requisição: " + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+
+      if (data.erro) {
+        alert("CEP não encontrado!");
+        return;
+      }
+
+      document.getElementById("rua").value = data.logradouro;
+      document.getElementById("cidade").value = data.localidade;
+      document.getElementById("estado").value = data.uf;
+
+      document.getElementById("numero").focus();
+
+      console.log(data);
+    })
+    .catch(error => {
+      console.error("Erro:", error);
+    });
 }
 
    
