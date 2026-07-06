@@ -2,12 +2,12 @@ async function cadastrarUsuario(){
     const dados = {
         nome: document.getElementById("nome").value,
         email: document.getElementById("email").value,
-        senha: document.getElementById("senha").value,
+        senha: document.getElementById("senha").value
 }
 
 
 try {
-    const res = await fetch("http://localhost:3000/login", {
+    const res = await fetch("http://localhost:3000/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +20,7 @@ try {
       localStorage.setItem("token", resultado.token);
       window.location.href = "index.html";
     } else {
-      alert("Cadastro inválidi!");
+      alert(resultado.erro);
     }
   } catch (erro) {
     alert("Falha na comunnicação com o servidor.");
