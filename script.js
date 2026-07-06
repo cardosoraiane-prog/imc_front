@@ -1,6 +1,6 @@
 async function cadastrarUsuario(){
     const dados = {
-        nome : DocumentFragment.getElementById("nome").value,
+        nome: DocumentFragment.getElementById("nome").value,
         email: document.getElementById("email").value,
         senha: document.getElementById("senha").value,
 }
