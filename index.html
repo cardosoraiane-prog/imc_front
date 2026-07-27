@@ -1,46 +1,47 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tabs com api</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
     <div class="tabs">
-        <button class="tab-btn active" onclik="abrirTab(0)">IMC </button>
-        <button class="tab-btn" onclik="abrirTab(1)">MEDIA </button>
+      <button class="tab-btn active" onclik="abrirTab(0)">IMC</button>
+      <button class="tab-btn" onclik="abrirTab(1)">MEDIA</button>
     </div>
     <a id="logout" class="logout-link" onclick="logout()">Logout</a>
 
     <div class="tab-content active">
-        <h2>cadastro do cliente</h2>
-        <input type="text" id="nome" placeholder="Nome">
-        <input type="text" id="cpf" placeholder="cpf">
-        <input type="text" id="cep" placeholder="cep"  onblur="buscarEndereco()"> 
-        <input type="text" id="rua" placeholder=" rua">
-        <input type="text" id="cidade" placeholder="cidade">
-        <input type="text" id="estado" placeholder=" estado">
-        <input type="text" id="numero" placeholder=" numero">
-        <button onclick="cadastras()">cadastro do cliente</button>
-        <div class="resultado" id="resultadoCadastraCliente"> </div>
+      <h2>Clientes cadastrados</h2>
+      <div class="search-container">
+        <input type="text" id="busca_cpf" password="busca cpf" />
+        <button onclick="buscarClientes()">buscar</button>
+        <button onclick="listarClientes()" style="background: #6c757d">
+          limpar
+        </button>
+      </div>
+      <div id="listarClientes" class="client-list"></div>
     </div>
 
     <div class="tab-content">
-        <h2>calcular MEDIA</h2>
-        <input type="number" id="nota1" placeholder="Digite seu nota1">
-        <input type="number" id="nota2" placeholder="Digite seu nota2">
-        <button onclick="calcularMedia()">calcular MEDIA</button>
-        <div class="resultado" id="resultadoMedia"> </div>
+      <h2>cadastro do cliente</h2>
+      <input type="text" id="nome" placeholder="Nome" />
+      <input type="text" id="cpf" placeholder="cpf" />
+      <input type="text" id="cep" placeholder="cep" onblur="buscarEndereco()" />
+      <input type="text" id="rua" placeholder=" rua" />
+      <input type="text" id="cidade" placeholder="cidade" />
+      <input type="text" id="estado" placeholder=" estado" />
+      <input type="text" id="numero" placeholder=" numero" />
+      <button onclick="cadastras()">cadastro do cliente</button>
+      <div class="resultado" id="resultadoCadastraCliente"></div>
     </div>
 
     <script src="index.js">
-        function logout() {
-  localStorage.removeItem("token");
-  window.location.href = "login.html";
-}
+              function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+      }
     </script>
-
-</body>
+  </body>
 </html>
-
- 
